@@ -1,4 +1,4 @@
-path: ./data/final
+path: E:\NaUKMA\KuzmenkoDL4CV\DL4CV\data\final
 train: images/train
 val: images/val
 test: images/test
@@ -7,8 +7,8 @@ nc: 7
 names:
   0: tank
   1: apc_ifv
-  2: artillery
-  3: logistics_truck
-  4: soldier
-  5: armored_car
+  2: armored_car
+  3: artillery
+  4: logistics_truck
+  5: soldier
   6: civilian_vehicle

@@ -1,5 +1,5 @@
+import shutil
 from pathlib import Path
-
 
 PAULSON_REMAP = {
     0: 2,    # ARMOREED_CAR -> armored_car
@@ -67,11 +67,36 @@ def remap_dataset(labels_dir, output_dir, remap_dict):
         )
 
 
-# run it
-remap_dataset("../../data/raw/dataset-paulson/train/labels",
-              "../../data/processed/dataset-paulson/train/labels",
-              PAULSON_REMAP)
+def copy_images(src_dir, dst_dir):
+    Path(dst_dir).mkdir(parents=True, exist_ok=True)
+    for ext in ["*.jpg", "*.jpeg", "*.png"]:
+        for img in Path(src_dir).glob(ext):
+            shutil.copy(img, dst_dir)
 
-remap_dataset("../../data/raw/dataset-RAW/train/labels",
-              "../../data/processed/dataset-RAW/train/labels",
-              RAW_REMAP)
+
+if __name__ == "__main__":
+    for split in ["train", "valid", "test"]:
+        remap_dataset(
+            f"../../data/raw/dataset-paulson/{split}/labels",
+            f"../../data/processed/dataset-paulson/{split}/labels",
+            PAULSON_REMAP
+        )
+
+    for split in ["train", "val", "test"]:
+        remap_dataset(
+            f"../../data/raw/dataset-RAW/{split}/labels",
+            f"../../data/processed/dataset-RAW/{split}/labels",
+            RAW_REMAP
+        )
+
+    for split in ["train", "valid", "test"]:
+        copy_images(
+            f"../../data/raw/dataset-paulson/{split}/images",
+            f"../../data/processed/dataset-paulson/{split}/images"
+        )
+
+    for split in ["train", "val", "test"]:
+        copy_images(
+            f"../../data/raw/dataset-RAW/{split}/images",
+            f"../../data/processed/dataset-RAW/{split}/images"
+        )
