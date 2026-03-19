@@ -6,7 +6,8 @@ from pathlib import Path
 # ─── CONFIG ───────────────────────────────────────────────
 SEED = 42
 SPLIT = (0.80, 0.10, 0.10)  # train / val / test
-OUTPUT_DIR = Path("data/final")
+SCRIPT_DIR = Path(__file__).parent.resolve()
+OUTPUT_DIR = SCRIPT_DIR.parent.parent / "data" / "final"
 
 SOURCES = [
     {
@@ -188,7 +189,7 @@ names:
     for class_id, class_name in UNIFIED_CLASSES.items():
         yaml_content += f"  {class_id}: {class_name}\n"
 
-    yaml_path = Path("configs/dataset.yaml")
+    yaml_path = Path("../configs/dataset.yaml")
     yaml_path.parent.mkdir(parents=True, exist_ok=True)
     with open(yaml_path, "w") as f:
         f.write(yaml_content)

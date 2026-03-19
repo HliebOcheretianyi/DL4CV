@@ -1,4 +1,4 @@
-path: E:\NaUKMA\KuzmenkoDL4CV\DL4CV\data\final
+path: F:\3 course\dl\data\final
 train: images/train
 val: images/val
 test: images/test

@@ -5,8 +5,16 @@ from pathlib import Path
 
 # ─── CONFIG ───────────────────────────────────────────────
 SEED = 42
-LABELS_DIR = Path("../../data/final/labels")
-IMAGES_DIR = Path("../../data/final/images")
+
+# Отримуємо шлях до папки, де лежить цей скрипт (src/data)
+SCRIPT_DIR = Path(__file__).parent.resolve()
+
+# Переходимо на два рівні вгору до кореня проєкту і заходимо в data/final
+# src/data -> src -> корінь -> data/final
+BASE_DATA_DIR = SCRIPT_DIR.parent.parent / "data" / "final"
+
+LABELS_DIR = BASE_DATA_DIR / "labels"
+IMAGES_DIR = BASE_DATA_DIR / "images"
 
 CAP_CONFIG = {
     6: 20000,   # civilian_vehicle — was 211,468, cap to match military classes
